@@ -45,15 +45,22 @@ while running:
     if snakes[-1][0] == apple[0] and snakes[-1][1] == apple[1]:
         snakes.insert(0, [tail_x, tail_y])
         apple = [randint(0,19), randint(0,19)]
-        score += 1
+        score += 1   
         
     # check crash with edge
     if snakes[-1][0] < 0 or snakes[-1][0] > 19 or snakes[-1][1] < 0 or snakes[-1][1] > 19:
+        pausing = True
+
+    # Draw game over
+    if pausing:
         game_over_txt = font_big.render("Game over, score: " + str(score), True, WHITE)
         press_space_txt = font_big.render("Press space to continue!", True, WHITE)
         screen.blit(game_over_txt, (50,200))
         screen.blit(press_space_txt, (50,300))
-        pausing = True
+    
+    # Draw score
+    score_txt = font_small.render("Score: " + str(score), True, WHITE)
+    screen.blit(score_txt, (0,10))
 
     # snake moves
     if pausing == False:
@@ -71,6 +78,11 @@ while running:
             snakes.pop(0)
         
     sleep(0.09)
+    
+    # check crash with body
+    for i in range(len(snakes) -1):
+        if snakes[-1][0] == snakes[i][0] and snakes[-1][1] == snakes[i][1]:
+            pausing = True
     
     
     for event in pygame.event.get():
@@ -91,7 +103,7 @@ while running:
                 # snakes.append([snakes[-1][0]+1, snakes[-1][1]])
                 # snakes.pop(0)
                 direction = "right"
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE and pausing == True:
                 pausing = False
                 snakes = [[5,10]]
                 apple = [randint(0,19), randint(0,19)]
