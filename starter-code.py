@@ -30,9 +30,9 @@ while running:
     tail_y = snakes[0][1]
     
     # draw grid
-    for i in range(20):
-        pygame.draw.line(screen, WHITE, (0,i*30), (600,i*30))
-        pygame.draw.line(screen, WHITE, (i*30,0), (i*30,600))
+    # for i in range(20):
+    #     pygame.draw.line(screen, WHITE, (0,i*30), (600,i*30))
+    #     pygame.draw.line(screen, WHITE, (i*30,0), (i*30,600))
         
     #draw snake
     for snake in snakes:
@@ -50,13 +50,6 @@ while running:
     # check crash with edge
     if snakes[-1][0] < 0 or snakes[-1][0] > 19 or snakes[-1][1] < 0 or snakes[-1][1] > 19:
         pausing = True
-
-    # Draw game over
-    if pausing:
-        game_over_txt = font_big.render("Game over, score: " + str(score), True, WHITE)
-        press_space_txt = font_big.render("Press space to continue!", True, WHITE)
-        screen.blit(game_over_txt, (50,200))
-        screen.blit(press_space_txt, (50,300))
     
     # Draw score
     score_txt = font_small.render("Score: " + str(score), True, WHITE)
@@ -77,13 +70,19 @@ while running:
             snakes.append([snakes[-1][0], snakes[-1][1]-1])
             snakes.pop(0)
         
-    sleep(0.09)
+    sleep(0.05)
     
     # check crash with body
     for i in range(len(snakes) -1):
         if snakes[-1][0] == snakes[i][0] and snakes[-1][1] == snakes[i][1]:
             pausing = True
     
+    # Draw game over
+    if pausing:
+        game_over_txt = font_big.render("Game over, score: " + str(score), True, WHITE)
+        press_space_txt = font_big.render("Press space to continue!", True, WHITE)
+        screen.blit(game_over_txt, (50,200))
+        screen.blit(press_space_txt, (50,300))
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -107,6 +106,7 @@ while running:
                 pausing = False
                 snakes = [[5,10]]
                 apple = [randint(0,19), randint(0,19)]
+                score = 0
                             
     pygame.display.flip()
 
