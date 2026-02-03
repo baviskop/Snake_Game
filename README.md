@@ -34,4 +34,4 @@ pip install pyinstaller
 pip installer **name of file** --noconsole --onefile --**icon**.ico
 ```
 
-### Thank for your watch
+### Thank for your watching
