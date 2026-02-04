@@ -70,7 +70,7 @@ while running:
             snakes.append([snakes[-1][0], snakes[-1][1]-1])
             snakes.pop(0)
         
-    sleep(0.05)
+    sleep(0.07)
     
     # check crash with body
     for i in range(len(snakes) -1):
