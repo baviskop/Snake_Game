@@ -36,6 +36,6 @@ pip installer **name of file** --noconsole --onefile --**icon**.ico
 
 ## Image
 
-[GUI Snake Game](https://github.com/user-attachments/assets/ecf9f11c-19f9-4cca-bbde-25345663746b)
+![GUI Snake Game](https://github.com/user-attachments/assets/ecf9f11c-19f9-4cca-bbde-25345663746b)
 
 ### Thank for your watching
